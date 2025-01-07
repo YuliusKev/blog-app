@@ -20,7 +20,6 @@ const AddBlog = () => {
       perPage: 10,
     })
     const [isMounted, setIsMounted] = useState(false);
-    const login = localStorage.getItem('login')
     const [totalPage, setTotalPage] = useState(0);
     const [allBlogpost, setAllBlogPost] = useState<Post[]>([])
     const {status, data} = useQuery({
@@ -32,56 +31,51 @@ const AddBlog = () => {
         }), // The function to fetch data
     });
     
-    if(login){
-      return (
-        <main 
-          className='ma-5'
-        >
-          <List
-            grid={{
-              gutter: 16,
-              column: 1, // Adjust for responsiveness
-            }}
-            dataSource={allBlogpost}
-            renderItem={(item: Post) => (
-              <List.Item>
-                <Card
-                  bordered={false}
-                  title={<span className="text-lg font-semibold">{item.title}</span>}
-                  className="bg-white shadow-md hover:shadow-lg transition-shadow duration-200 rounded-lg mx-7 my-5"
-                  extra={(
-                    <div className="flex gap-2">
-                      <Button
-                        type="primary"
-                        icon={<EditOutlined />}
-                        size="small"
-                        // onClick={() => handleEdit(post.id)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        type="primary"
-                        danger
-                        icon={<DeleteOutlined />}
-                        size="small"
-                        // onClick={() => handleDelete(post.id)}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  )}
-                >
-                  <p className="text-gray-700">{item.body}</p>
-                </Card>
-              </List.Item>
-            )}
-          />
-        </main>
-      )
-    } else {
-      return  <ModalLogin />
-    }
-   
+    return (
+      <main 
+        className='ma-5'
+      >
+        <List
+          grid={{
+            gutter: 16,
+            column: 1, // Adjust for responsiveness
+          }}
+          dataSource={allBlogpost}
+          renderItem={(item: Post) => (
+            <List.Item>
+              <Card
+                bordered={false}
+                title={<span className="text-lg font-semibold">{item.title}</span>}
+                className="bg-white shadow-md hover:shadow-lg transition-shadow duration-200 rounded-lg mx-7 my-5"
+                extra={(
+                  <div className="flex gap-2">
+                    <Button
+                      type="primary"
+                      icon={<EditOutlined />}
+                      size="small"
+                      // onClick={() => handleEdit(post.id)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      type="primary"
+                      danger
+                      icon={<DeleteOutlined />}
+                      size="small"
+                      // onClick={() => handleDelete(post.id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                )}
+              >
+                <p className="text-gray-700">{item.body}</p>
+              </Card>
+            </List.Item>
+          )}
+        />
+      </main>
+    )
 }
 
 export default AddBlog
