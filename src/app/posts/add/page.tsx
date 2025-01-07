@@ -1,5 +1,4 @@
 'use client';
-import ModalLogin from '@/app/components/modalLogin'
 import { useQuery } from '@tanstack/react-query';
 import { getAllPosts } from '../../../../server/posts';
 
@@ -19,7 +18,6 @@ const AddBlog = () => {
       currentPage: 1,
       perPage: 10,
     })
-    const [isMounted, setIsMounted] = useState(false);
     const [totalPage, setTotalPage] = useState(0);
     const [allBlogpost, setAllBlogPost] = useState<Post[]>([])
     const {status, data} = useQuery({
